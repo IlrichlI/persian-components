@@ -2,6 +2,7 @@
   "name": "persian-components",
   "version": "0.0.2",
   "main": "./src/main.ts",
+  "description": "common persian components for vue 3",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -46,5 +47,30 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IlrichlI/persian-components"
+  },
+  "keywords": [
+    "jalali",
+    "jalaali",
+    "jalaali date picker",
+    "jalali date picker",
+    "persian",
+    "persian components",
+    "persian component",
+    "persian tools",
+    "persian tool"
+  ],
+  "homepage": "https://github.com/IlrichlI/persian-components#readme",
+  "author": "Ali Aslani <aliaslani.mm@gmail.com> (https://www.linkedin.com/in/ialiaslani/)",
+  "bugs": {
+    "url": "https://github.com/IlrichlI/persian-components/issues"
+  },
+  "directories": {
+    "doc": "./",
+    "man": "./src"
+  },
+  "license": "(MIT)"
 }
