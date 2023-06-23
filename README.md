@@ -1,52 +1,71 @@
-# persian-components
+# Persian Components
+Remember that work is in progress!
 
-This template should help get you started developing with Vue 3 in Vite.
+![npm](https://img.shields.io/npm/v/persian-components)
+![npm bundle size](https://img.shields.io/bundlephobia/min/persian-components)
+![GitHub](https://img.shields.io/github/license/your-username/persian-components)
 
-## Recommended IDE Setup
+My NPM package is a Vue 3 Composition API component library integrated with Tailwind CSS and date-fns-jalali. It provides various utility components and functions for working with Jalali (Persian) dates in a Vue project.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Installation
 
-## Type Support for `.vue` Imports in TS
+You can install the package via npm:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm install persian-components
 ```
 
-### Compile and Hot-Reload for Development
+## Usage
 
-```sh
-npm run dev
+Import the components or functions from the package and start using them in your Vue 3 project:
+
+```vue
+
+// Use the DatePicker component
+<template>
+  <JalaaliDatePicker />
+</template>
+
+<script setup lang="ts">
+import { JalaaliDatePicker } from 'persian-components';
+</script>
 ```
 
-### Type-Check, Compile and Minify for Production
+## Documentation
 
-```sh
-npm run build
-```
+For detailed usage instructions and examples, please refer to the [documentation](https://github.com/IlrichlI/persian-components).
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Contributing
 
-```sh
-npm run test:unit
-```
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-### Lint with [ESLint](https://eslint.org/)
+To contribute to the project, follow these steps:
 
-```sh
-npm run lint
-```
+1. Fork the repository.
+2. Create a new branch for your feat/fix.
+3. Make your changes and write tests if applicable.
+4. Run `npm run lint` to ensure code quality.
+5. Commit your changes and push to your forked repository.
+6. Submit a pull request to the main repository.
+
+Please make sure to follow the [code of conduct](https://github.com/IlrichlI/persian-components) when contributing.
+
+## License
+
+This package is open source and available under the [MIT License](https://opensource.org/licenses/MIT).
+
+## Acknowledgements
+
+This project wouldn't have been possible without the following amazing libraries:
+
+- [Vue.js](https://vuejs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [date-fns-jalali](https://github.com/your-username/date-fns-jalali)
+
+## Contact
+
+If you have any questions or inquiries, feel free to contact me at [aliaslani.mm@gmail.com](mailto:aliaslani.mm@gmail.com).
+
+---
+
+Thank you for using This NPM Package! We hope it helps you in your projects. Contributions and feedback are highly appreciated.
