@@ -66,7 +66,7 @@ describe('JalaaliDatePicker', () => {
     selectDate(17)
     const jalali = getJalaliDate(17)
     const [year, month, d] = jalaliToGregorian(jalali.jYear, jalali.jMonth, jalali.jDay)
-    const gregorian = new Date(year, month - 1, d)
+    const gregorian = new Date(year, month - 1, d + 1)
     expect(selectedDate.gregorian.getDate() === gregorian.getDate()).toBe(true)
     expect(selectedDate.jalali.jDay === 17).toBe(true)
     expect(getActiveDay(17)).toBe(true)
