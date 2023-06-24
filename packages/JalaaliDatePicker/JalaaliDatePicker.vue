@@ -16,7 +16,8 @@ const {
   nextYear,
   selectDate,
   getActiveDay,
-  getEmptyDivesOfTheWeek
+  getEmptyDivesOfTheWeek,
+  weekDays
 } = useJalali()
 
 const selectingDate = (day: number) => {
@@ -52,11 +53,7 @@ const selectingDate = (day: number) => {
         </div>
       </div>
       <div class="grid grid-cols-7 gap-2" style="direction: rtl">
-        <div
-          class="w-8 h-8 text-center"
-          v-for="(w, i) in ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']"
-          :key="i"
-        >
+        <div class="w-8 h-8 text-center" v-for="(w, i) in weekDays" :key="i">
           {{ w }}
         </div>
         <div v-for="(m, i) in new Array(getEmptyDivesOfTheWeek)" :key="i" />
