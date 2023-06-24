@@ -48,7 +48,7 @@ export const useJalali = () => {
       selectedDate.jalali.jMonth,
       selectedDate.jalali.jDay
     )
-    selectedDate.gregorian = new Date(year, month - 1, date)
+    selectedDate.gregorian = new Date(year, month - 1, date + 1, 0, 0, 0)
   }
 
   const getActiveDay = (day: number) => {
@@ -104,12 +104,12 @@ export const useJalali = () => {
   const isLessThanMinDate = (day: number, min: Date) => {
     const jalali = getJalaliDate(day)
     const [year, month, date] = jalaliToGregorian(jalali.jYear, jalali.jMonth, jalali.jDay)
-    return min > new Date(year, month - 1, date)
+    return min > new Date(year, month - 1, date + 1)
   }
   const isMoreThanMaxDate = (day: number, max: Date) => {
     const jalali = getJalaliDate(day)
     const [year, month, date] = jalaliToGregorian(jalali.jYear, jalali.jMonth, jalali.jDay)
-    return max < new Date(year, month - 1, date)
+    return max < new Date(year, month - 1, date + 1)
   }
 
   return {
