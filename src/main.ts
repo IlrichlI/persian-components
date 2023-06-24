@@ -1,3 +1,10 @@
-import '../public/main.css';
+import '../public/main.css'
 
-export * from './JalaaliDatePicker';
+export * from '../packages'
+
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.mount('#app')
