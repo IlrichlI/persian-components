@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// .eslintrc.cjs
 module.exports = {
   content: [
     './index.html',
