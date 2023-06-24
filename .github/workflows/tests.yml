@@ -3,11 +3,11 @@ name: Run Tests on Pull Requests
 on:
   pull_request:
     branches:
-      - main  # Adjust the branch name to match your repository's default branch
+      - main # Adjust the branch name to match your repository's default branch
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Choose the desired runner environment
+    runs-on: ubuntu-latest # Choose the desired runner environment
 
     steps:
       - name: Checkout code
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 18  # Specify the desired Node.js version
+          node-version: 18 # Specify the desired Node.js version
 
       - name: Install dependencies
         run: npm i

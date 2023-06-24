@@ -1,8 +1,8 @@
 <template>
-  <div class="grid grid-cols-3 p-4">
+  <div class="grid grid-cols-3 p-4 gap-8">
     <JalaaliDatePicker :max="new Date()" />
     <JalaaliDatePicker :min="new Date()" />
-    <JalaaliDatePicker @on-select="onSelectDate" />
+    <JalaaliDatePicker @on-select="onSelectDate" modal />
   </div>
 </template>
 

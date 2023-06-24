@@ -8,5 +8,4 @@ describe('JalaaliDatePicker', () => {
     const wrapper = mount(JalaaliDatePicker)
     expect(wrapper.findComponent(JalaaliDatePicker).isVisible()).toBe(true)
   })
-
 })
