@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import { useJalali } from './'
+import { useJalali } from './useJalali'
 import NextMonthArrow from './components/NextMonthArrow.vue'
 import NextYearArrow from './components/NextYearArrow.vue'
 import PreviousMonthArrow from './components/PreviousMonthArrow.vue'
 import PreviousYearArrow from './components/PreviousYearArrow.vue'
 
-const emit = defineEmits(['selectDate'])
+const props = defineProps({
+  min: {
+    type: Date
+  },
+  max: {
+    type: Date
+  }
+})
+
+const emit = defineEmits(['on-select'])
 
 const {
   daysInMonth,
@@ -17,12 +26,26 @@ const {
   selectDate,
   getActiveDay,
   getEmptyDivesOfTheWeek,
-  weekDays
+  weekDays,
+  selectedDate,
+  isLessThanMinDate,
+  isMoreThanMaxDate
 } = useJalali()
 
 const selectingDate = (day: number) => {
-  emit('onSelectDate', day)
   selectDate(day)
+  emit('on-select', JSON.parse(JSON.stringify(selectedDate)))
+}
+
+const getDateClasses = (day: number) => {
+  if (
+    (props.min && isLessThanMinDate(day, props.min)) ||
+    (props.max && isMoreThanMaxDate(day, props.max))
+  ) {
+    return '!text-gray-600 !bg-gray-400 pointer-events-none'
+  }
+
+  if (getActiveDay(day)) return '!text-blue-500 bg-white'
 }
 </script>
 
@@ -56,12 +79,12 @@ const selectingDate = (day: number) => {
         <div class="w-8 h-8 text-center" v-for="(w, i) in weekDays" :key="i">
           {{ w }}
         </div>
-        <div v-for="(m, i) in new Array(getEmptyDivesOfTheWeek)" :key="i" />
+        <div v-for="(_, i) in new Array(getEmptyDivesOfTheWeek)" :key="i" />
         <template v-for="(day, i) in Array.from({ length: daysInMonth }, (_, i) => i + 1)" :key="i">
           <button
             class="day-btn bg-blue-500 border-none text-white w-8 h-8 rounded-full transition-all hover:bg-blue-200 hover:text-blue-600 cursor-pointer"
             @click="selectingDate(day)"
-            :class="{ '!text-blue-500 bg-white': getActiveDay(day) }"
+            :class="getDateClasses(day)"
           >
             {{ day }}
           </button>

@@ -1,12 +1,12 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "packages/JalaaliDatePicker/index.ts"],
-  "exclude": ["src/**/__tests__/*"],
+  "include": ["env.d.ts", "./**/*", "./**/*.vue", "packages/JalaaliDatePicker/index.ts"],
+  "exclude": ["./**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   }
 }

@@ -1,5 +1,6 @@
 import { reactive, ref, computed } from 'vue'
 import { format, addMonths, subMonths, addYears, subYears, getDaysInMonth } from 'date-fns-jalali'
+import { jalaliToGregorian } from './jalali'
 
 export const useJalali = () => {
   const currentMonth = ref(new Date())
@@ -42,11 +43,12 @@ export const useJalali = () => {
 
   const selectDate = (day: number) => {
     selectedDate.jalali = getJalaliDate(day)
-    selectedDate.gregorian = new Date(
-      currentMonth.value.getFullYear(),
-      currentMonth.value.getMonth(),
-      day
+    const [year, month, date] = jalaliToGregorian(
+      selectedDate.jalali.jYear,
+      selectedDate.jalali.jMonth,
+      selectedDate.jalali.jDay
     )
+    selectedDate.gregorian = new Date(year, month - 1, date)
   }
 
   const getActiveDay = (day: number) => {
@@ -99,6 +101,17 @@ export const useJalali = () => {
   // default selected is today
   selectDate(Number(format(currentMonth.value, 'dd')))
 
+  const isLessThanMinDate = (day: number, min: Date) => {
+    const jalali = getJalaliDate(day)
+    const [year, month, date] = jalaliToGregorian(jalali.jYear, jalali.jMonth, jalali.jDay)
+    return min > new Date(year, month - 1, date)
+  }
+  const isMoreThanMaxDate = (day: number, max: Date) => {
+    const jalali = getJalaliDate(day)
+    const [year, month, date] = jalaliToGregorian(jalali.jYear, jalali.jMonth, jalali.jDay)
+    return max < new Date(year, month - 1, date)
+  }
+
   return {
     selectedDate,
     currentMonth,
@@ -112,7 +125,10 @@ export const useJalali = () => {
     getActiveDay,
     getEmptyDivesOfTheWeek,
     getDayOfWeek,
-    weekDays
+    weekDays,
+    isLessThanMinDate,
+    isMoreThanMaxDate,
+    getJalaliDate
   }
 }
 

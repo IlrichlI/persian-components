@@ -1,16 +1,18 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import { JalaaliDatePicker, useJalali } from './index'
+import { JalaaliDatePicker } from './index'
+import { useJalali } from './useJalali'
+import { jalaliToGregorian } from './jalali'
 
 describe('JalaaliDatePicker', () => {
   it('renders properly', async () => {
     const wrapper = mount(JalaaliDatePicker)
     await wrapper.find('button.day-btn').trigger('click')
     const emitted = wrapper.emitted()
-    expect(emitted.onSelectDate.length).toBe(1)
+    expect(emitted['on-select'].length).toBe(1)
 
-    expect(wrapper.emitted().onSelectDate[0]).toEqual([1])
+    expect((wrapper.emitted()['on-select'] as any)[0][0].jalali.jDay).toEqual(1)
 
     expect(wrapper.findComponent(JalaaliDatePicker).isVisible()).toBe(true)
   })
@@ -60,14 +62,12 @@ describe('JalaaliDatePicker', () => {
   })
 
   it('select date', () => {
-    const { selectedDate, selectDate, getActiveDay } = useJalali()
+    const { selectedDate, selectDate, getActiveDay, getJalaliDate } = useJalali()
     selectDate(17)
-    const date = new Date(
-      selectedDate.gregorian.getFullYear(),
-      selectedDate.gregorian.getMonth(),
-      17
-    )
-    expect(selectedDate.gregorian.getDate() === date.getDate()).toBe(true)
+    const jalali = getJalaliDate(17)
+    const [year, month, d] = jalaliToGregorian(jalali.jYear, jalali.jMonth, jalali.jDay)
+    const gregorian = new Date(year, month - 1, d)
+    expect(selectedDate.gregorian.getDate() === gregorian.getDate()).toBe(true)
     expect(selectedDate.jalali.jDay === 17).toBe(true)
     expect(getActiveDay(17)).toBe(true)
     expect(getActiveDay(18)).toBe(false)
