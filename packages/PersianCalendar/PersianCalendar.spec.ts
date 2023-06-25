@@ -1,20 +1,20 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import { JalaaliCalendar } from './index'
+import { PersianCalendar } from './index'
 import { useJalali } from './useJalali'
 import { jalaliToGregorian } from './jalali'
 
-describe('JalaaliCalendar', () => {
+describe('PersianCalendar', () => {
   it('renders properly', async () => {
-    const wrapper = mount(JalaaliCalendar)
+    const wrapper = mount(PersianCalendar)
     await wrapper.find('button.day-btn').trigger('click')
     const emitted = wrapper.emitted()
     expect(emitted['on-select'].length).toBe(1)
 
     expect((wrapper.emitted()['on-select'] as any)[0][0].jalali.jDay).toEqual(1)
 
-    expect(wrapper.findComponent(JalaaliCalendar).isVisible()).toBe(true)
+    expect(wrapper.findComponent(PersianCalendar).isVisible()).toBe(true)
   })
 
   it('next month', () => {

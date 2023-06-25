@@ -23,11 +23,11 @@ Import the components or functions from the package and start using them in your
 ```vue
 // Use the DatePicker component
 <template>
-  <JalaaliDatePicker />
+  <PersianDatePicker />
 </template>
 
 <script setup lang="ts">
-import { JalaaliDatePicker } from 'persian-components'
+import { PersianDatePicker } from 'persian-components'
 </script>
 ```
 
