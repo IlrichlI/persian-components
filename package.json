@@ -1,6 +1,6 @@
 {
   "name": "persian-components",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "./src/main.ts",
   "description": "common persian components for vue 3",
   "scripts": {

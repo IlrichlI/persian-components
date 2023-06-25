@@ -48,7 +48,7 @@ import { PersianDatePicker } from 'persian-components'
 
 ## Documentation
 
-For detailed usage instructions and examples, please refer to the [documentation](https://github.com/IlrichlI/persian-components).
+For detailed usage instructions and examples, please refer to the [documentation](https://ilrichli.github.io).
 
 ## Contributing
 
