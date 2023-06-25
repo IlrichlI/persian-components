@@ -7,6 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { PersianDatePicker } from '@/packages'
+import { PersianDatePicker } from '../../packages'
 const onSelectDate = (d: number) => console.log(d)
 </script>

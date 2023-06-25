@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
 import { PersianDatePicker } from './index'
-import { PersianComponents } from '@/packages'
+import { PersianComponents } from '../../../'
 
 describe('PersianDatePicker', () => {
   it('renders properly', async () => {

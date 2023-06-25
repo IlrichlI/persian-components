@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { PersianCircleLoading } from '@/packages'
+import { PersianCircleLoading } from '../'
 
 const emit = defineEmits(['click'])
 const props = defineProps({

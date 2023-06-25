@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import PersianModalContent from './PersianModalContent.vue'
-import { useModal } from '@/packages'
+import { useModal } from './'
 
 const props = defineProps({
   modalId: {

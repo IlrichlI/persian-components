@@ -1,7 +1,7 @@
 import { reactive, ref, computed } from 'vue'
 import { format, addMonths, subMonths, addYears, subYears, getDaysInMonth } from 'date-fns-jalali'
 import { jalaliToGregorian } from './jalali'
-import { useWords } from '@/packages'
+import { useWords } from '../../'
 
 export const useJalali = () => {
   const { cutHalfSpace } = useWords()

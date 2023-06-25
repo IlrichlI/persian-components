@@ -48,7 +48,7 @@ import {
   PersianModal,
   PersianButton,
   useModal
-} from '@/packages'
+} from '../../../'
 
 const isDatePickerOpen = ref(false)
 const datePickerDate = ref('')
