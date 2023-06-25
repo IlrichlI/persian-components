@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div>
-      <PersianInput :model-value="datePickerDate" @click="isDatePickerOpen = true" />
+      <PersianInput :model-value="datePickerDate" @click="openDatePicker" />
     </div>
     <div
       v-if="!modal"
@@ -12,7 +12,7 @@
         <template #calendar-footer>
           <button
             class="mx-3 day-btn bg-blue-500 border-none p-1 text-white transition-all hover:bg-blue-200 hover:text-blue-600 cursor-pointer"
-            @click="isDatePickerOpen = false"
+            @click="closeDatePicker"
           >
             بستن
           </button>
@@ -20,13 +20,13 @@
       </PersianCalendar>
     </div>
     <div v-else>
-      <PersianModal :visible="isDatePickerOpen">
+      <PersianModal modal-id="persian-calendar-modal">
         <template #body>
           <PersianCalendar :min="min" :max="max" @on-select="onSelectDate">
             <template #calendar-footer>
               <button
                 class="mx-3 day-btn bg-blue-500 border-none p-1 text-white transition-all hover:bg-blue-200 hover:text-blue-600 cursor-pointer"
-                @click="isDatePickerOpen = false"
+                @click="closeDatePicker"
               >
                 بستن
               </button>
@@ -44,6 +44,7 @@ import { ref } from 'vue'
 import { PersianCalendar, type TSelectedDate } from '../PersianCalendar'
 import { PersianInput } from '../PersianInput'
 import { PersianModal } from '../PersianModal'
+import useModal from '../PersianModal/useModal'
 
 const isDatePickerOpen = ref(false)
 const datePickerDate = ref('')
@@ -57,7 +58,19 @@ const onSelectDate = ({ gregorian, jalali }: TSelectedDate) => {
   datePickerDate.value = jalali.jYear + '/' + jalali.jMonth + '/' + jalali.jDay
 }
 
-defineProps({
+const { openModal, closeModal } = useModal()
+
+const openDatePicker = () => {
+  props.modal && openModal('persian-calendar-modal')
+  isDatePickerOpen.value = true
+}
+
+const closeDatePicker = () => {
+  props.modal && closeModal('persian-calendar-modal')
+  isDatePickerOpen.value = false
+}
+
+const props = defineProps({
   min: {
     type: Date
   },

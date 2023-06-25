@@ -1,55 +1,30 @@
-<template>
-  <Teleport to="body">
-    <div
-      v-if="visible"
-      class="w-[100vw] h-[90vh] flex justify-center items-center bg-gray-900 bg-opacity-60 z-30"
-      @click="$emit('update:visible', false)"
-    >
-      <Transition :name="transition">
-        <div
-          class="flex-row z-40 bg-white h-[400px] w-[500px] max-auto overflow-hidden shadow-2xl self-end"
-          :class="bodyClass"
-          @click.stop
-        >
-          <div class="h-full flex-1 overflow-y-auto">
-            <slot name="body" />
-          </div>
-        </div>
-      </Transition>
-    </div>
-  </Teleport>
-</template>
-
 <script setup lang="ts">
-defineProps({
-  visible: {
-    type: Boolean,
-    default: false
-  },
-  transition: {
+import { computed, onMounted } from 'vue'
+import PersianModalContent from './PersianModalContent.vue'
+import useModal from './useModal'
+
+const props = defineProps({
+  modalId: {
     type: String,
-    default: 'slide-bottom-fade'
-  },
-  bodyClass: {
-    type: String,
-    default: ''
+    required: true
   }
 })
 
-defineEmits<{ (event: 'update:visible', value: boolean): void }>()
+onMounted(() => {
+  registerModal(props.modalId)
+})
+
+const { modals, registerModal, closeModal } = useModal()
+const visible = computed(() => (modals?.value ? modals.value[props.modalId]?.open || false : false))
 </script>
 
-<style scoped>
-.slide-bottom-fade-enter-active {
-  transition: all 0.2s ease-out;
-}
-
-.slide-bottom-fade-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-bottom-fade-enter-from,
-.slide-bottom-fade-leave-to {
-  transform: translateY(100%);
-}
-</style>
+<template>
+  <Teleport to="body">
+    <!-- use the modal component, pass in the prop -->
+    <PersianModalContent :show="visible" @close="closeModal(modalId)">
+      <template v-for="(_index, name) in $slots" v-slot:[name]="data">
+        <slot :name="name" v-bind="data" />
+      </template>
+    </PersianModalContent>
+  </Teleport>
+</template>
