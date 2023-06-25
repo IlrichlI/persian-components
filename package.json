@@ -40,7 +40,7 @@
     "vue-tsc": "^1.6.5"
   },
   "exports": {
-    "persian-components": {
+    ".": {
       "node": "./src/main.ts",
       "default": "./src/main.ts"
     }

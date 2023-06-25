@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useJalali, PersianButton, PersianTooltip, PersianTypography } from '@/packages'
+import { useJalali, PersianButton, PersianTooltip, PersianTypography } from '../../'
 import NextMonthArrow from './components/NextMonthArrow.vue'
 import NextYearArrow from './components/NextYearArrow.vue'
 import PreviousMonthArrow from './components/PreviousMonthArrow.vue'
