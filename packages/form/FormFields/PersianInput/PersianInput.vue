@@ -14,6 +14,7 @@ const emit = defineEmits([
 
 const props = defineProps({
   readonly: { type: Boolean, default: true },
+  ltr: { type: Boolean, default: true },
   id: { type: String, default: '' },
   type: { type: String, default: 'text' },
   label: { type: String, default: '' },
@@ -69,7 +70,7 @@ const onFocus = () => {
       </span>
       <input
         :model-value="modelValue"
-        class="px-2 w-full appearance-none focus:ring-0 placeholder-gray-400 transition-colors duration-100 ease-in-out leading-normal rounded disabled:opacity-40 border-black border-opacity-50 !bg-white text-[16px] min-h-[40px]"
+        class="text-inherit px-2 w-full appearance-none focus:ring-0 placeholder-gray-400 transition-colors duration-100 ease-in-out leading-normal rounded disabled:opacity-40 border-black border-opacity-50 !bg-white text-[16px] min-h-[40px]"
         :class="{
           '!border-red-400': error,
           ltr: ltr
@@ -95,9 +96,3 @@ const onFocus = () => {
     <slot />
   </div>
 </template>
-<style lang="postcss" scoped>
-input {
-  text-align: inherit;
-  padding: 3px 0.5rem 0;
-}
-</style>

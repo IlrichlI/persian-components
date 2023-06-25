@@ -18,7 +18,22 @@ npm install persian-components
 
 ## Usage
 
-Import the components or functions from the package and start using them in your Vue 3 project:
+First of all
+
+```ts
+import { PersianComponents } from 'persian-components'
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.use(PersianComponents)
+
+app.mount('#app')
+
+```
+
+Then import the components or functions from the package and start using them in your Vue 3 project:
 
 ```vue
 // Use the DatePicker component
