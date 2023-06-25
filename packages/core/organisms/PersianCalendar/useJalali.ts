@@ -1,8 +1,11 @@
 import { reactive, ref, computed } from 'vue'
 import { format, addMonths, subMonths, addYears, subYears, getDaysInMonth } from 'date-fns-jalali'
 import { jalaliToGregorian } from './jalali'
+import { useWords } from '@/packages'
 
 export const useJalali = () => {
+  const { cutHalfSpace } = useWords()
+
   const currentMonth = ref(new Date())
   const selectedDate = reactive({
     gregorian: new Date(),
@@ -96,7 +99,15 @@ export const useJalali = () => {
   }
   const getEmptyDivesOfTheWeek = computed(() => getEmptyNumberOfTheWeek(currentMonth.value))
 
-  const weekDays = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']
+  const weekDays = [
+    { short: 'ش', word: 'شنبه ها' },
+    { short: 'ی', word: 'یکشنبه ها' },
+    { short: 'د', word: 'دوشنبه ها' },
+    { short: 'س', word: cutHalfSpace('سه شنبه ها') },
+    { short: 'چ', word: 'چهارشنبه ها' },
+    { short: 'پ', word: 'پنجشنبه ها' },
+    { short: 'ج', word: 'جمعه ها' }
+  ]
 
   // default selected is today
   selectDate(Number(format(currentMonth.value, 'dd')))

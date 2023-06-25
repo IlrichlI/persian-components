@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useJalali } from './useJalali'
+import { useJalali, PersianButton, PersianTooltip, PersianTypography } from '@/packages'
 import NextMonthArrow from './components/NextMonthArrow.vue'
 import NextYearArrow from './components/NextYearArrow.vue'
 import PreviousMonthArrow from './components/PreviousMonthArrow.vue'
@@ -15,7 +15,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['on-select'])
-
 const {
   daysInMonth,
   monthName,
@@ -36,22 +35,11 @@ const selectingDate = (day: number) => {
   selectDate(day)
   emit('on-select', JSON.parse(JSON.stringify(selectedDate)))
 }
-
-const getDateClasses = (day: number) => {
-  if (
-    (props.min && isLessThanMinDate(day, props.min)) ||
-    (props.max && isMoreThanMaxDate(day, props.max))
-  ) {
-    return '!text-gray-600 !bg-gray-400 pointer-events-none'
-  }
-
-  if (getActiveDay(day)) return '!text-blue-500 bg-white'
-}
 </script>
 
 <template>
   <div class="jalali-date-picker">
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center mb-4">
       <div class="flex items-center justify-between mb-4">
         <div>
           <PreviousYearArrow
@@ -77,17 +65,28 @@ const getDateClasses = (day: number) => {
       </div>
       <div class="grid grid-cols-7 gap-2" style="direction: rtl">
         <div class="w-8 h-8 text-center" v-for="(w, i) in weekDays" :key="i">
-          {{ w }}
+          <PersianTooltip tooltipActionClass="w-[60px] flex justify-center">
+            <template #tooltip-action>
+              <PersianTypography :text="w.word" />
+            </template>
+            <template #content>
+              <PersianTypography :text="w.short" />
+            </template>
+          </PersianTooltip>
         </div>
         <div v-for="(_, i) in new Array(getEmptyDivesOfTheWeek)" :key="i" />
         <template v-for="(day, i) in Array.from({ length: daysInMonth }, (_, i) => i + 1)" :key="i">
-          <button
-            class="day-btn bg-blue-500 border-none text-white w-8 h-8 rounded-full transition-all hover:bg-blue-200 hover:text-blue-600 cursor-pointer"
+          <PersianButton
+            class="day-btn bg-blue-500 border-none text-white w-8 h-8"
             @click="selectingDate(day)"
-            :class="getDateClasses(day)"
+            :disabled="
+              (props.min && isLessThanMinDate(day, props.min)) ||
+              (props.max && isMoreThanMaxDate(day, props.max))
+            "
+            :active="getActiveDay(day)"
           >
             {{ day }}
-          </button>
+          </PersianButton>
         </template>
       </div>
     </div>

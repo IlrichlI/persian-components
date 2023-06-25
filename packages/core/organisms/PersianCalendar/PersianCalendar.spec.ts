@@ -1,8 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import { PersianCalendar } from './index'
-import { useJalali } from './useJalali'
+import { PersianCalendar, useJalali } from '@/packages'
 import { jalaliToGregorian } from './jalali'
 
 describe('PersianCalendar', () => {
