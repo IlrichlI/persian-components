@@ -1,4 +1,5 @@
 # Persian Components
+
 Remember that work is in progress!
 
 ![npm](https://img.shields.io/npm/v/persian-components)
@@ -20,14 +21,13 @@ npm install persian-components
 Import the components or functions from the package and start using them in your Vue 3 project:
 
 ```vue
-
 // Use the DatePicker component
 <template>
-  <JalaaliDatePicker />
+  <PersianDatePicker />
 </template>
 
 <script setup lang="ts">
-import { JalaaliDatePicker } from 'persian-components';
+import { PersianDatePicker } from 'persian-components'
 </script>
 ```
 

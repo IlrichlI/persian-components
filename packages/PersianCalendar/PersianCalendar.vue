@@ -91,5 +91,6 @@ const getDateClasses = (day: number) => {
         </template>
       </div>
     </div>
+    <slot name="calendar-footer" />
   </div>
 </template>

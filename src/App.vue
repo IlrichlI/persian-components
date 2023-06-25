@@ -1,7 +1,7 @@
 <template>
-  <JalaaliDatePickerExample />
+  <PersianDatePickerExample />
 </template>
 
 <script setup lang="ts">
-import JalaaliDatePickerExample from './examples/JalaaliDatePickerExample.vue'
+import PersianDatePickerExample from './examples/PersianDatePickerExample.vue'
 </script>
