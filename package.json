@@ -1,6 +1,6 @@
 {
   "name": "persian-components",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "./src/main.ts",
   "description": "common persian components for vue 3",
   "scripts": {
@@ -41,8 +41,11 @@
   },
   "exports": {
     ".": {
-      "node": "./src/main.ts",
-      "default": "./src/main.ts"
+      "import": {
+        "types": "./persian-components",
+        "node": "./src/main.ts",
+        "default": "./src/main.ts"
+      }
     }
   },
   "publishConfig": {
