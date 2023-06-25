@@ -71,7 +71,7 @@
   },
   "directories": {
     "doc": "./",
-    "man": "./src"
+    "main": "./src"
   },
   "license": "MIT"
 }
