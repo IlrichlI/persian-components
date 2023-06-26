@@ -1,1 +1,1 @@
-export * from './PersianDatePicker'
+export * from './DatePicker'

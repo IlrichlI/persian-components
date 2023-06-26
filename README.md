@@ -4,7 +4,7 @@ Remember that work is in progress!
 
 ![npm](https://img.shields.io/npm/v/persian-components)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/persian-components)
-![GitHub](https://img.shields.io/github/license/your-username/persian-components)
+![GitHub](https://img.shields.io/github/license/ilrichli/persian-components)
 
 This NPM package is a Vue 3 Composition API component library integrated with Tailwind CSS and date-fns-jalali. It provides various utility components and functions for working with Jalali (Persian) dates in a Vue project.
 

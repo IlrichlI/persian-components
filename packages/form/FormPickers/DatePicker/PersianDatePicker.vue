@@ -1,7 +1,11 @@
 <template>
   <div class="relative">
     <div>
-      <PersianInput :model-value="datePickerDate" @click="openDatePicker" />
+      <InputField
+        :model-value="datePickerDate"
+        @click="openDatePicker"
+        :input-props="{ readonly: true }"
+      />
     </div>
     <div
       v-if="!modal"
@@ -44,7 +48,7 @@ import { ref } from 'vue'
 import {
   type TSelectedDate,
   PersianCalendar,
-  PersianInput,
+  InputField,
   PersianModal,
   PersianButton,
   useModal

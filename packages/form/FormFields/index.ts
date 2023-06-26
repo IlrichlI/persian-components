@@ -1,1 +1,1 @@
-export * from './PersianInput'
+export * from './InputField'
