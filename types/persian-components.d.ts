@@ -8,6 +8,7 @@ export type TPersianCalendar = {
   max?: Date
 }
 
+//todo: complete or auto
 export const PersianCalendar = {} as unknown as DefineComponent<TPersianCalendar>
 
 export const PersianDatePicker = {} as unknown as DefineComponent<>
