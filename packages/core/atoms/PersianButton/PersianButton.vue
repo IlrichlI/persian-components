@@ -115,3 +115,8 @@ const className = computed(() => {
     <slot />
   </component>
 </template>
+
+<style>
+@tailwind components;
+@tailwind utilities;
+</style>

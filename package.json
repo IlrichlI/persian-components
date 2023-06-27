@@ -1,24 +1,32 @@
 {
   "name": "persian-components",
+  "files": [
+    "dist"
+  ],
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "module",
   "version": "0.0.7",
-  "main": "./src/main.ts",
+  "main": "./dist/persian-components.js",
   "description": "common persian components for vue 3",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-only",
+    "build": "run-p type-check build-only && node ./scripts/copy.js",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write ./"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.14",
     "date-fns-jalali": "^2.30.0-0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@babel/types": "^7.22.5",
     "@rushstack/eslint-patch": "^1.2.0",
     "@tsconfig/node18": "^2.0.1",
     "@types/jsdom": "^21.1.1",
@@ -41,12 +49,11 @@
   },
   "exports": {
     ".": {
-      "import": {
-        "types": "./persian-components",
-        "node": "./src/main.ts",
-        "default": "./src/main.ts"
-      }
-    }
+      "import": "./dist/persian-components.js",
+      "require": "./dist/persian-components.umd.cjs",
+      "types": "./dist/persian-components.d.ts"
+    },
+    "./style.css": "./dist/style.css"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

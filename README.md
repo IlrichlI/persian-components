@@ -22,14 +22,13 @@ First of all
 
 ```ts
 import { PersianComponents } from 'persian-components'
-import { createApp } from 'vue'
-import App from './App.vue'
+import 'persian-components/style.css'
 
-const app = createApp(App)
+import { createApp } from 'vue'
+
 
 app.use(PersianComponents)
 
-app.mount('#app')
 
 ```
 

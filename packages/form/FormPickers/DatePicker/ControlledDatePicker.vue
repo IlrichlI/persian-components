@@ -13,7 +13,7 @@
         :id="id"
         :class="{
           '!border-red-400 border-1 border-solid rounded-md': error,
-          ltr: ltr
+          ltr
         }"
         :max="max"
         :min="min"

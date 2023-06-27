@@ -4,23 +4,23 @@
   </form>
 </template>
 
-<script setup lang="ts" generic="T = any">
+<script setup lang="ts">
 import { watch, reactive, provide, type FormHTMLAttributes } from 'vue'
 
 interface FormPackageProps {
   formProps?: FormHTMLAttributes & { class?: string }
   name?: string
   autoComplete?: 'off' | 'on'
-  model?: T
+  model?: any
 }
 
 const props = defineProps<FormPackageProps>()
 const emit = defineEmits(['on-submit', 'on-change'])
 
-const form = reactive(props.model || {})
+const form = reactive(props.model || {}) as Record<string, any>
 
 watch(
-  () => props.model as object,
+  () => props.model as Record<string, any>,
   (val) => {
     Object.keys(val).forEach((key) => (form[key] = val[key]))
   }
