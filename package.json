@@ -51,7 +51,8 @@
       "require": "./dist/persian-components.umd.cjs",
       "types": "./dist/persian-components.d.ts"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./dev": "./packages/index.ts"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
