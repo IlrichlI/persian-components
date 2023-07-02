@@ -26,7 +26,8 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
+import type { PropType } from 'vue'
 
 interface Option {
   value: string

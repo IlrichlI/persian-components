@@ -22,7 +22,7 @@ const visible = computed(() => (modals?.value ? modals.value[props.modalId]?.ope
   <Teleport to="body">
     <!-- use the modal component, pass in the prop -->
     <PersianModalContent :show="visible" @close="closeModal(modalId)">
-      <template v-for="(_index, name) in $slots" v-slot:[name]="data">
+      <template v-for="(_index, name) in $slots" #[name]="data">
         <slot :name="name" v-bind="data" />
       </template>
     </PersianModalContent>

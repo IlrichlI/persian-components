@@ -4,7 +4,7 @@
     "dist"
   ],
   "type": "module",
-  "version": "0.0.8",
+  "version": "0.0.8-beta",
   "main": "./dist/persian-components.umd.cjs",
   "module": "./dist/persian-components.js",
   "description": "common persian components for vue 3",
@@ -51,8 +51,7 @@
       "require": "./dist/persian-components.umd.cjs",
       "types": "./dist/persian-components.d.ts"
     },
-    "./style.css": "./dist/style.css",
-    "./dev": "./packages/index.ts"
+    "./style.css": "./dist/style.css"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
