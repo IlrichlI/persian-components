@@ -14,7 +14,8 @@ const props = defineProps({
   icon: { type: String, default: undefined },
   iconClass: { type: String, default: 'ml-1 w-5 h-5' },
   type: { type: String, default: 'button' },
-  size: { type: String, default: 'md' }
+  size: { type: String, default: 'md' },
+  buttonProps: { type: Object, default: () => ({}) }
 })
 const onClick = ($event: Event) => {
   if (!props.loading && !props.disabled) {
@@ -101,6 +102,7 @@ const className = computed(() => {
     :class="className"
     :disabled="disabled || loading"
     :type="type"
+    v-bind="buttonProps"
     @click="onClick"
   >
     <PersianCircleLoading
@@ -113,3 +115,8 @@ const className = computed(() => {
     <slot />
   </component>
 </template>
+
+<style>
+@tailwind components;
+@tailwind utilities;
+</style>
