@@ -1,9 +1,8 @@
 <template>
   <div class="w-64">
-    <input type="checkbox" class="radio" :value="1" name="6465416" />
     <select
       v-model="selectedOption"
-      class="w-full !py-2 px-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-200 cursor-pointer"
+      class="w-full !py-2 px-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-200"
       @input="refine"
       @focus="onFocus"
       @blur="onBlur"
@@ -13,7 +12,7 @@
       @click="$emit('click', $event)"
     >
       <option v-for="option in options" :key="option.value" :value="option.value">
-        <input type="checkbox" :value="option.value" :name="option.name" /> {{ option.label }}
+        {{ option.label }}
       </option>
     </select>
   </div>
@@ -31,7 +30,7 @@ interface Option {
 const props = defineProps({
   modelValue: Boolean,
   options: {
-    type: Object,
+    type: Array as PropType<Array<Option>>,
     required: true
   },
   id: String
@@ -61,6 +60,5 @@ const onFocus = () => {
   emit('focused', {})
 }
 
-const selectedOption = ref('')
+const selectedOption = ref(props.options[0].value)
 </script>
-<style scoped></style>

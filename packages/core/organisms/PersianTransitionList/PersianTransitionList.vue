@@ -51,7 +51,7 @@
         >
           <slot
             :name="list.key + '-container'"
-            v-if="listData[Number(list.key)] && listData[Number(list.key)].data.length > 0"
+            v-if="listData[list.key] && listData[list.key].data.length > 0"
             :active-mode="activeMode"
           >
             <span>This is your Card Container</span>
@@ -63,8 +63,7 @@
         <slot
           name="footer"
           v-if="
-            (list.key === activeMode || 'default' === activeMode) &&
-            listData[Number(list.key)].length !== 0
+            (list.key === activeMode || 'default' === activeMode) && listData[list.key].length !== 0
           "
         >
           This is your default footer
@@ -89,7 +88,7 @@ const setActiveList = (key: string) => {
 const setDefaultActive = (key: string) => {
   activeMode.value = key
 }
-const defaultPosition = (e: any) => {
+const defaultPosition = (e: Event) => {
   e.stopPropagation()
   activeMode.value = 'default'
 }
