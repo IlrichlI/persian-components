@@ -13,15 +13,28 @@ type TListsContainer = {
 }
 
 export type TPersianTransitionListProps = {
-  listsContainer:Array<TListsContainer>;
-  listsData: Record<string, Array<{
-    key: string,
-    title: string,
-    button: string,
-    span: string,
-    date:string,
-    details:string
-  }>>
+  listsContainer: Array<TListsContainer>
+  listsData: Record<
+    string,
+    Array<{
+      key: string
+      title: string
+      button: string
+      span: string
+      date: string
+      details: string
+    }>
+  >
 }
 
 export type TPersianTransitionListEmits = {}
+
+export type TPersianPaginationProps = {}
+
+export type TPersianPaginationEmits = {}
+
+export type TPersianEmptyProps = {
+  titleI18n?: string
+}
+
+export type TPersianEmptyEmits = {}

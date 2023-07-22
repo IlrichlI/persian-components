@@ -51,7 +51,7 @@
         >
           <slot
             :name="list.key + '-container'"
-            v-if="listData[list.key] && listData[list.key].data.length > 0"
+            v-if="listData[list.key] && listData[list.key].length > 0"
             :active-mode="activeMode"
           >
             <span>This is your Card Container</span>
@@ -98,8 +98,20 @@ defineProps({
     default: () => []
   },
   listData: {
-    type: Array as PropType<any>,
-    default: () => []
+    type: Object as PropType<
+      Record<
+        string,
+        Array<{
+          key: string
+          title: string
+          button: string
+          span: string
+          date: string
+          details: string
+        }>
+      >
+    >,
+    default: () => ({})
   }
 })
 </script>
