@@ -1,9 +1,51 @@
-import type { TPersianCalendarProps, TPersianCalendarEmits } from './types'
+import type { TPersianCalendarProps, TPersianCalendarEmits,TPersianTransitionListProps,
+  TPersianTransitionListEmits } from './types'
 
 declare module 'persian-components/style.css';
 
 declare module 'persian-components' {
-  declare const _default: {}
+  declare const _default: {
+
+    PersianCalendar: DefineComponent<
+      TPersianCalendarProps, 
+      unknown, 
+      unknown,
+      {},
+      {},
+      {}, 
+      unknown, 
+      TPersianCalendarEmits
+      > & {
+      new (): {
+        $slots: {
+          'calendar-footer': (arg: any) => VNode[];
+        };
+      };
+    }
+
+    PersianTransitionList: DefineComponent<
+      TPersianTransitionListProps, 
+      unknown, 
+      unknown,
+      {},
+      {},
+      {}, 
+      unknown, 
+      TPersianTransitionListEmits
+      > & {
+      new (): {
+        $slots: {
+          'filters-container': (arg: any) => VNode[];
+          'search-container': (arg: any) => VNode[];
+          'list-header-button': (arg: { defaultPosition: () => void }) => VNode[];
+          'footer': (arg: any) => VNode[];
+          [key in string + '-container']: (arg: { activeMode: string }) => VNode[];
+        };
+      };
+    }
+  
+
+  }
   export default _default
 
   import type { DefineComponent } from 'vue'
@@ -11,23 +53,39 @@ declare module 'persian-components' {
   //todo: complete or auto
     
   export const PersianCalendar = {} as unknown as DefineComponent<
-  TPersianCalendarProps, 
+    TPersianCalendarProps, 
+    unknown, 
+    unknown,
+    {},
+    {},
+    {}, 
+    unknown, 
+    TPersianCalendarEmits
+    > & {
+    new (): {
+      $slots: {
+        'calendar-footer': (arg: any) => VNode[];
+      };
+    };
+  }
+    
+  export const PersianTransitionList = {} as unknown as DefineComponent<
+  TPersianTransitionListProps, 
   unknown, 
   unknown,
   {},
   {},
   {}, 
   unknown, 
-  TPersianCalendarEmits
+  TPersianTransitionListEmits
   > & {
-  // we augment the wrapper type with a constructor type that overrides/adds
-  // the slots type information by adding a `$slots` object with slot functions defined as properties
   new (): {
     $slots: {
-      // each function correspond to a slot and its arguments are the slot props available
-      // this is the default slot definition, it offers the `GenericSlotProps` properties as slot props.
-      // it should return an array of `VNode`
-      'calendar-footer': (arg: any) => VNode[];
+      'filters-container': (arg: any) => VNode[];
+      'search-container': (arg: any) => VNode[];
+      'list-header-button': (arg: { defaultPosition: () => void }) => VNode[];
+      'footer': (arg: any) => VNode[];
+      [key in string + '-container']: (arg: { activeMode: string }) => VNode[];
     };
   };
   }
