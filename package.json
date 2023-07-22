@@ -4,7 +4,7 @@
     "dist"
   ],
   "type": "module",
-  "version": "0.0.8-beta",
+  "version": "0.0.9",
   "main": "./dist/persian-components.umd.cjs",
   "module": "./dist/persian-components.js",
   "description": "common persian components for vue 3",
