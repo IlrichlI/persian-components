@@ -1,7 +1,8 @@
 {
   "name": "persian-components",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "type": "module",
   "version": "0.0.9",
@@ -10,7 +11,7 @@
   "description": "common persian components for vue 3",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-only && node ./scripts/copy.js",
+    "build": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
@@ -49,7 +50,7 @@
     ".": {
       "import": "./dist/persian-components.js",
       "require": "./dist/persian-components.umd.cjs",
-      "types": "./dist/persian-components.d.ts"
+      "types": "./index.d.ts"
     },
     "./style.css": "./dist/style.css"
   },
