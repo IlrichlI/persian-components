@@ -10,5 +10,5 @@ defineProps({
   }
 })
 
-const getText = (text: String) => text.replace(' ها', '\u200cها')
+const getText = (text: string) => text.replace(' ها', '\u200cها')
 </script>
