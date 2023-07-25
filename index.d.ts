@@ -46,9 +46,9 @@ export type TPersianTooltipProps = {
 }
 
 
-declare module 'persian-components/style.css'
+export declare module 'persian-components/style.css'
 
-declare module 'persian-components' {
+export declare module 'persian-components' {
   declare const _default: {
     PersianCalendar: DefineComponent<
       TPersianCalendarProps,

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-[1200px] m-auto">
+  <div class="flex flex-col w-[100%] m-auto">
     <div class="flex justify-between mb-2">
       <slot name="filters-container">
         <div class="filters-container py-[8px] px-[12px] round-[8px]">This is Filter section</div>
@@ -18,7 +18,7 @@
           justTitle: activeMode === 'default'
         }"
         class="activity-container bg-[#fafafa] p-[8px] flex flex-col justify-between mx-[0.2rem]"
-        :style="{ width: listsContainer.length / 100 + '%' }"
+        :style="{ width: 100 / listsContainer.length + '%' }"
         @click="activeMode !== 'default' && setActiveList(list.key)"
       >
         <button
