@@ -5,7 +5,7 @@
     "index.d.ts"
   ],
   "type": "module",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "main": "./dist/persian-components.umd.cjs",
   "module": "./dist/persian-components.js",
   "description": "common persian components for vue 3",

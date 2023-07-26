@@ -49,21 +49,28 @@
           }"
           class="list-item-col h-[100%]"
         >
-          <slot
-            :name="list.key + '-container'"
-            v-if="listData[list.key] && listData[list.key].length > 0"
-            :active-mode="activeMode"
-          >
-            <span>This is your Card Container</span>
-          </slot>
-          <div v-else class="flex justify-center items-center">
-            <PersianEmpty :titleI18n="'درخواستی ثبت نکرده اید .'" />
+          <div v-if="loading">
+            <slot v-if="loading" name="loading">
+              <div class="flex justify-center items-center">This is loading</div>
+            </slot>
+          </div>
+          <div v-else>
+            <slot
+              :name="list.key + '-container'"
+              v-if="listData[list.key] && listData[list.key].length > 0"
+              :active-mode="activeMode"
+            >
+              <span>This is your Card Container</span>
+            </slot>
+            <div v-else class="flex justify-center items-center">
+              <PersianEmpty :titleI18n="'درخواستی ثبت نکرده اید .'" />
+            </div>
           </div>
         </div>
         <slot
           name="footer"
           v-if="
-            (list.key === activeMode || 'default' === activeMode) && listData[list.key].length !== 0
+            (list.key === activeMode || 'default' === activeMode) && listData[list.key]?.length !== 0
           "
         >
           This is your default footer
@@ -112,6 +119,10 @@ defineProps({
       >
     >,
     default: () => ({})
+  },
+  loading: {
+    type: Boolean as PropType<boolean>,
+    default: () => false
   }
 })
 </script>
