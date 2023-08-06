@@ -1,18 +1,11 @@
 <script setup lang="ts">
-import { useJalali, PersianButton, PersianTooltip, PersianTypography } from '../../'
+import { useJalali, PersianButton, PersianTooltip, PersianTypography, type TSteps } from '../../'
 import NextMonthArrow from './components/NextMonthArrow.vue'
 import NextYearArrow from './components/NextYearArrow.vue'
 import PreviousMonthArrow from './components/PreviousMonthArrow.vue'
 import PreviousYearArrow from './components/PreviousYearArrow.vue'
 import ReturnArrow from './components/ReturnArrow.vue'
 import { ref, type PropType, computed } from 'vue'
-import { gregorianToJalali } from './jalali'
-
-type TSteps = {
-  year: boolean
-  month: boolean
-  day: boolean
-}
 
 const props = defineProps({
   min: {
@@ -35,6 +28,7 @@ const steps = ref<TSteps>({ year: true, month: false, day: false })
 const {
   daysInMonth,
   monthName,
+  currentMonthAndYear,
   previousMonth,
   nextMonth,
   previousYear,
@@ -218,10 +212,10 @@ const monthStepShortCut = () => {
           </div>
           <div v-if="steps.day" class="flex justify-center">
             <a class="mx-1 cursor-pointer" :style="{ color: 'black' }" @click="monthStepShortCut">
-              <PersianTypography :text="monthName.split(' ')[0]" />
+              <PersianTypography :text="currentMonthAndYear.month" />
             </a>
             <a class="mx-1 cursor-pointer" :style="{ color: 'black' }" @click="toYearStep">
-              <PersianTypography :text="monthName.slice(-4)" />
+              <PersianTypography :text="currentMonthAndYear.year" />
             </a>
           </div>
         </div>

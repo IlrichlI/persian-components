@@ -26,6 +26,10 @@ export const useJalali = () => {
 
   const daysInMonth = computed(() => getDaysInMonth(currentMonth.value))
   const monthName = computed(() => format(currentMonth.value, 'MMMM yyyy'))
+  const currentMonthAndYear = computed(() => ({
+    year: format(currentMonth.value, 'MMMM yyyy').slice(-4),
+    month: format(currentMonth.value, 'MMMM yyyy').split(' ')[0]
+  }))
 
   const previousMonth = () => {
     currentMonth.value = subMonths(currentMonth.value, 1)
@@ -166,6 +170,7 @@ export const useJalali = () => {
     }
   }
   return {
+    currentMonthAndYear,
     selectedDate,
     currentMonth,
     daysInMonth,
