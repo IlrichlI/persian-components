@@ -6,6 +6,7 @@ import PreviousMonthArrow from './components/PreviousMonthArrow.vue'
 import PreviousYearArrow from './components/PreviousYearArrow.vue'
 import ReturnArrow from './components/ReturnArrow.vue'
 import { ref, type PropType, computed } from 'vue'
+import { gregorianToJalali } from './jalali'
 
 type TSteps = {
   year: boolean
@@ -29,7 +30,6 @@ const props = defineProps({
     default: () => [1320, 1402]
   }
 })
-const currentYear = ref<number>(1402)
 const emit = defineEmits(['on-select'])
 const steps = ref<TSteps>({ year: true, month: false, day: false })
 const {
@@ -51,6 +51,7 @@ const {
   setCustomMonth
 } = useJalali()
 
+const currentYear = ref<number>(1402)
 const selectingDate = (day: number) => {
   selectDate(day)
   emit('on-select', JSON.parse(JSON.stringify(selectedDate)))
@@ -216,10 +217,10 @@ const monthStepShortCut = () => {
             <PersianTypography :text="String(currentYear)" />
           </div>
           <div v-if="steps.day" class="flex justify-center">
-            <a class="mx-1 cursor-pointer" :style="{ color: 'black' }" :onclick="monthStepShortCut">
+            <a class="mx-1 cursor-pointer" :style="{ color: 'black' }" @click="monthStepShortCut">
               <PersianTypography :text="monthName.split(' ')[0]" />
             </a>
-            <a class="mx-1 cursor-pointer" :style="{ color: 'black' }" :onclick="toYearStep">
+            <a class="mx-1 cursor-pointer" :style="{ color: 'black' }" @click="toYearStep">
               <PersianTypography :text="monthName.slice(-4)" />
             </a>
           </div>
@@ -264,7 +265,7 @@ const monthStepShortCut = () => {
             v-for="year in yearsList"
             :key="year"
             variant="transparent"
-            :onClick="() => toMonthStep(year)"
+            @Click="() => toMonthStep(year)"
             class="day-btn !bg-transparent border-none text-white w-3 h-8 flex justify-center items-center"
             :style="{ color: '#3D505C !important', padding: '9px 12px' }"
           >
@@ -280,7 +281,7 @@ const monthStepShortCut = () => {
             v-for="month in yearMonths"
             :key="month.word"
             variant="transparent"
-            :onClick="() => toDayStep(month.word)"
+            @Click="() => toDayStep(month.word)"
             class="day-btn !bg-transparent border-none text-white w-3 h-8 flex justify-center items-center"
             :style="{ color: '#3D505C !important', padding: '9px 12px' }"
           >
