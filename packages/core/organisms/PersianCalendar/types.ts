@@ -6,3 +6,8 @@ export type TSelectedDate = {
     jYear: number
   }
 }
+export type TSteps = {
+  year: boolean
+  month: boolean
+  day: boolean
+}

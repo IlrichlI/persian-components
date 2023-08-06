@@ -1,5 +1,13 @@
 import { reactive, ref, computed } from 'vue'
-import { format, addMonths, subMonths, addYears, subYears, getDaysInMonth } from 'date-fns-jalali'
+import {
+  format,
+  addMonths,
+  subMonths,
+  addYears,
+  subYears,
+  getDaysInMonth,
+  getYear
+} from 'date-fns-jalali'
 import { jalaliToGregorian } from './jalali'
 import { useWords } from '../../'
 
@@ -109,6 +117,21 @@ export const useJalali = () => {
     { short: 'ج', word: 'جمعه ها' }
   ]
 
+  const yearMonths = [
+    { word: 'فروردین' },
+    { word: 'اردیبهشت' },
+    { word: 'خرداد' },
+    { word: 'تیر' },
+    { word: 'مرداد' },
+    { word: 'شهریور' },
+    { word: 'مهر' },
+    { word: 'آبان' },
+    { word: 'آذر' },
+    { word: 'دی' },
+    { word: 'بهمن' },
+    { word: 'اسفند' }
+  ]
+
   // default selected is today
   selectDate(Number(format(currentMonth.value, 'dd')))
 
@@ -122,7 +145,26 @@ export const useJalali = () => {
     const [year, month, date] = jalaliToGregorian(jalali.jYear, jalali.jMonth, jalali.jDay)
     return max < new Date(year, month - 1, date + 1)
   }
-
+  const setCustomYear = (year: number) => {
+    const [jYear, jMonth, jDate] = jalaliToGregorian(
+      year,
+      currentMonth.value.getMonth() + 1,
+      selectedDate.jalali.jDay
+    )
+    currentMonth.value = new Date(jYear, jMonth, jDate)
+  }
+  const setCustomMonth = (month: number, year: number, mode: 'default' | 'YMD' | 'YM' | 'Y') => {
+    if (mode === 'default' || mode === 'YMD') {
+      const [jYear, jMonth, jDate] = jalaliToGregorian(year, month, selectedDate.jalali.jDay)
+      currentMonth.value = new Date(jYear, jMonth, jDate)
+    } else if (mode === 'YM') {
+      const [jYear, jMonth, jDate] = jalaliToGregorian(year, month, 1)
+      currentMonth.value = new Date(jYear, jMonth, jDate)
+    } else {
+      const [jYear, jMonth, jDate] = jalaliToGregorian(year, 1, 1)
+      currentMonth.value = new Date(jYear, jMonth - 1, jDate)
+    }
+  }
   return {
     selectedDate,
     currentMonth,
@@ -139,7 +181,10 @@ export const useJalali = () => {
     weekDays,
     isLessThanMinDate,
     isMoreThanMaxDate,
-    getJalaliDate
+    getJalaliDate,
+    yearMonths,
+    setCustomYear,
+    setCustomMonth
   }
 }
 

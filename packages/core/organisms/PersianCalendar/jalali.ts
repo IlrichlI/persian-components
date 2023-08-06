@@ -77,5 +77,5 @@ export function jalaliToGregorian(jy: number, jm: number, jd: number) {
     31
   ]
   for (gm = 0; gm < 13 && gd > sal_a[gm]; gm++) gd -= sal_a[gm]
-  return [gy, gm, gd]
+  return [gy, gm, gd] as const
 }
