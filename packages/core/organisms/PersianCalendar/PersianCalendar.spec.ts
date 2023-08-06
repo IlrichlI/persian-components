@@ -9,7 +9,7 @@ describe('PersianCalendar', () => {
     const wrapper = mount(PersianCalendar)
     await wrapper.find('button.day-btn').trigger('click')
     const emitted = wrapper.emitted()
-    expect(emitted['on-select'].length).toBe(1)
+    expect(emitted['on-select']?.length).toBe(1)
 
     expect((wrapper.emitted()['on-select'] as any)[0][0].jalali.jDay).toEqual(1)
 
