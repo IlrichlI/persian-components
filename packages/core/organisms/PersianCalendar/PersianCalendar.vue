@@ -42,7 +42,8 @@ const {
   isMoreThanMaxDate,
   yearMonths,
   setCustomYear,
-  setCustomMonth
+  setCustomMonth,
+  getActiveMonth
 } = useJalali()
 
 const currentYear = ref<number>(1402)
@@ -258,10 +259,10 @@ const monthStepShortCut = () => {
           <PersianButton
             v-for="year in yearsList"
             :key="year"
-            variant="transparent"
             @Click="() => toMonthStep(year)"
-            class="day-btn !bg-transparent border-none text-white w-3 h-8 flex justify-center items-center"
-            :style="{ color: '#3D505C !important', padding: '9px 12px' }"
+            class="year-btn border-none w-5 h-8 flex justify-center items-center !text-black bg-transparent"
+            :style="{ padding: '1rem 2rem' }"
+            :active="year === currentYear"
           >
             {{ year }}
           </PersianButton>
@@ -272,12 +273,12 @@ const monthStepShortCut = () => {
           :style="{ direction: 'ltr' }"
         >
           <PersianButton
-            v-for="month in yearMonths"
+            v-for="(month, i) in yearMonths"
             :key="month.word"
-            variant="transparent"
             @Click="() => toDayStep(month.word)"
-            class="day-btn !bg-transparent border-none text-white w-3 h-8 flex justify-center items-center"
-            :style="{ color: '#3D505C !important', padding: '9px 12px' }"
+            class="month-btn border-none w-5 h-8 flex justify-center items-center !text-black bg-transparent"
+            :style="{ padding: '1rem 2rem' }"
+            :active="getActiveMonth(i + 1)"
           >
             {{ month.word }}
           </PersianButton>
@@ -304,11 +305,9 @@ const monthStepShortCut = () => {
             :key="i"
           >
             <PersianButton
-              class="day-btn !bg-transparent border-none text-white w-3 h-8 flex justify-center items-center"
-              :style="{ color: '#3D505C !important' }"
+              class="day-btn border-none w-3 h-8 flex justify-center items-center !text-black bg-transparent"
               @click="selectingDate(day)"
-              :active="day == 2"
-              variant="transparent"
+              :active="getActiveDay(day)"
             >
               {{ day }}
             </PersianButton>

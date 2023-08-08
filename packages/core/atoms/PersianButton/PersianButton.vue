@@ -62,6 +62,8 @@ const className = computed(() => {
       cls.push(props.outline ? 'bg-white text-black' : 'bg-black text-white')
       if (props.border) {
         cls.push('border border-black')
+      }else{
+        cls.push('!border-none')
       }
       break
     case 'transparent':
@@ -70,15 +72,15 @@ const className = computed(() => {
   }
 
   if (props.active && !(props.disabled || props.loading)) {
-    cls.push('!text-blue-500 bg-white')
+    cls.push('!text-blue-500 !bg-blue-100')
   }
 
   switch (props.size) {
     case 'sm':
-      cls.push('h-5 px-3 py-1 text-sm rounded-[2px]')
+      cls.push('h-5 px-3 py-1 text-sm rounded-[12px]')
       break
     case 'md':
-      cls.push('h-7 px-4 py-1/2 text-sm rounded-[4px]')
+      cls.push('h-7 px-4 py-1/2 text-sm rounded-[12px]')
       break
     case 'circle':
       cls.push('h-6 w-6 p-2 text-sm rounded-full')
