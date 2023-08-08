@@ -1,14 +1,6 @@
 import { reactive, ref, computed } from 'vue'
-import {
-  format,
-  addMonths,
-  subMonths,
-  addYears,
-  subYears,
-  getDaysInMonth,
-  getYear
-} from 'date-fns-jalali'
-import { jalaliToGregorian } from './jalali'
+import { format, addMonths, subMonths, addYears, subYears, getDaysInMonth } from 'date-fns-jalali'
+import { gregorianToJalali, jalaliToGregorian } from './jalali'
 import { useWords } from '../../'
 
 export const useJalali = () => {
@@ -74,6 +66,12 @@ export const useJalali = () => {
       selectedDate.jalali.jYear === jalaliDate.jYear
     )
   }
+  const getActiveMonth = (month: number) => {
+    return (
+      selectedDate.jalali.jMonth === month
+    )
+  }
+
 
   const getDayOfWeek = (currentMonth: Date) => {
     const days = [
@@ -85,8 +83,15 @@ export const useJalali = () => {
       'Friday',
       'Saturday'
     ] as const
-    const currentDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1)
+    const [jYear, jMonth] = gregorianToJalali(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth() + 1,
+      currentMonth.getDate()
+    )
+    const [gYear, gMonth, gDate] = jalaliToGregorian(jYear, jMonth, 1)
+    const currentDate = new Date(gYear, gMonth - 1, gDate)
     const dayOfWeek = currentDate.getDay()
+
     return days[dayOfWeek]
   }
   function getEmptyNumberOfTheWeek(currentMonth: Date) {
@@ -189,7 +194,8 @@ export const useJalali = () => {
     getJalaliDate,
     yearMonths,
     setCustomYear,
-    setCustomMonth
+    setCustomMonth,
+    getActiveMonth
   }
 }
 
