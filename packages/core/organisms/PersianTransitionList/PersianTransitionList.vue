@@ -63,7 +63,9 @@
               <span>This is your Card Container</span>
             </slot>
             <div v-else class="flex justify-center items-center">
-              <PersianEmpty :titleI18n="'درخواستی ثبت نکرده اید .'" />
+              <slot name="empty-container">
+                <PersianEmpty :titleI18n="'درخواستی ثبت نکرده اید .'" />
+              </slot>
             </div>
           </div>
         </div>
