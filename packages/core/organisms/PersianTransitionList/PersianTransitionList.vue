@@ -62,17 +62,16 @@
             >
               <span>This is your Card Container</span>
             </slot>
-            <div v-else class="flex justify-center items-center">
-              <slot name="empty-container">
-                <PersianEmpty :titleI18n="'درخواستی ثبت نکرده اید .'" />
-              </slot>
-            </div>
+            <slot v-else name="empty-container" class="flex justify-center items-center">
+              <PersianEmpty :titleI18n="'درخواستی ثبت نکرده اید .'" />
+            </slot>
           </div>
         </div>
         <slot
           name="footer"
           v-if="
-            (list.key === activeMode || 'default' === activeMode) && listData[list.key]?.length !== 0
+            (list.key === activeMode || 'default' === activeMode) &&
+            listData[list.key]?.length !== 0
           "
         >
           This is your default footer
