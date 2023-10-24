@@ -95,7 +95,7 @@ const toMonthStep = (year: number) => {
 }
 const toDayStep = (month: string) => {
   setCustomMonth(
-    yearMonths.findIndex((m: any) => m.word === month),
+    yearMonths.findIndex((m: any) => m.word === month) + 1,
     currentYear.value,
     props.mode
   )

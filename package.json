@@ -5,7 +5,7 @@
     "index.d.ts"
   ],
   "type": "module",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "main": "./dist/persian-components.umd.cjs",
   "module": "./dist/persian-components.js",
   "description": "common persian components for vue 3",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "date-fns-jalali": "^2.30.0-0",
+    "jalali-moment": "^3.3.11",
     "tailwindcss": "^3.3.2",
     "vue": "^3.3.4"
   },

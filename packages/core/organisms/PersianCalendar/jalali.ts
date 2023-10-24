@@ -1,81 +1,18 @@
-/**  Gregorian & Jalali (Hijri_Shamsi,Solar) Date Converter Functions
-Author: JDF.SCR.IR =>> Download Full Version :  http://jdf.scr.ir/jdf
-License: GNU/LGPL _ Open Source & Free :: Version: 2.81 : [2020=1399]
----------------------------------------------------------------------
-355746=361590-5844 & 361590=(30*33*365)+(30*8) & 5844=(16*365)+(16/4)
-355666=355746-79-1 & 355668=355746-79+1 &  1595=605+990 &  605=621-16
-990=30*33 & 12053=(365*33)+(32/4) & 36524=(365*100)+(100/4)-(100/100)
-1461=(365*4)+(4/4) & 146097=(365*400)+(400/4)-(400/100)+(400/400)  */
+import moment from "jalali-moment"
+
+const englishNumbers = (s: string | number) => {
+  return String(s)
+    .replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+    .replace(/[٠-٩]/g, d => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
+}
 
 export function gregorianToJalali(gy: number, gm: number, gd: number) {
-  let jy, jm, jd, days
-  const g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
-  const gy2 = gm > 2 ? gy + 1 : gy
-  days =
-    355666 +
-    365 * gy +
-    ~~((gy2 + 3) / 4) -
-    ~~((gy2 + 99) / 100) +
-    ~~((gy2 + 399) / 400) +
-    gd +
-    g_d_m[gm - 1]
-  jy = -1595 + 33 * ~~(days / 12053)
-  days %= 12053
-  jy += 4 * ~~(days / 1461)
-  days %= 1461
-  if (days > 365) {
-    jy += ~~((days - 1) / 365)
-    days = (days - 1) % 365
-  }
-  if (days < 186) {
-    jm = 1 + ~~(days / 31)
-    jd = 1 + (days % 31)
-  } else {
-    jm = 7 + ~~((days - 186) / 30)
-    jd = 1 + ((days - 186) % 30)
-  }
-  return [jy, jm, jd]
+  const jalali = englishNumbers(new Date(gy,gm -1,gd).toLocaleDateString('fa-IR'))
+  const [jy,jm,jd] = jalali.split('/').map(j => +j)
+  return [jy, jm, jd] as const
 }
 
 export function jalaliToGregorian(jy: number, jm: number, jd: number) {
-  let gy, gm, gd, days
-  jy += 1595
-  days =
-    -355668 +
-    365 * jy +
-    ~~(jy / 33) * 8 +
-    ~~(((jy % 33) + 3) / 4) +
-    jd +
-    (jm < 7 ? (jm - 1) * 31 : (jm - 7) * 30 + 186)
-  gy = 400 * ~~(days / 146097)
-  days %= 146097
-  if (days > 36524) {
-    gy += 100 * ~~(--days / 36524)
-    days %= 36524
-    if (days >= 365) days++
-  }
-  gy += 4 * ~~(days / 1461)
-  days %= 1461
-  if (days > 365) {
-    gy += ~~((days - 1) / 365)
-    days = (days - 1) % 365
-  }
-  gd = days + 1
-  const sal_a = [
-    0,
-    31,
-    (gy % 4 === 0 && gy % 100 !== 0) || gy % 400 === 0 ? 29 : 28,
-    31,
-    30,
-    31,
-    30,
-    31,
-    31,
-    30,
-    31,
-    30,
-    31
-  ]
-  for (gm = 0; gm < 13 && gd > sal_a[gm]; gm++) gd -= sal_a[gm]
+  const  [gy,gm,gd] = (moment.from([jy,jm,jd].join('/'), 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD') as any as string).split('/').map(i => +i)
   return [gy, gm, gd] as const
 }

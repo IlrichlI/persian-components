@@ -85,7 +85,7 @@ export const useJalali = () => {
     ] as const
     const [jYear, jMonth] = gregorianToJalali(
       currentMonth.getFullYear(),
-      currentMonth.getMonth() + 1,
+      currentMonth.getMonth(),
       currentMonth.getDate()
     )
     const [gYear, gMonth, gDate] = jalaliToGregorian(jYear, jMonth, 1)
@@ -157,21 +157,21 @@ export const useJalali = () => {
   const setCustomYear = (year: number) => {
     const [jYear, jMonth, jDate] = jalaliToGregorian(
       year,
-      currentMonth.value.getMonth() + 1,
+      selectedDate.jalali.jMonth,
       selectedDate.jalali.jDay
     )
-    currentMonth.value = new Date(jYear, jMonth, jDate)
+    currentMonth.value = new Date(jYear, jMonth - 1, jDate)
   }
   const setCustomMonth = (month: number, year: number, mode: 'default' | 'YMD' | 'YM' | 'Y') => {
     if (mode === 'default' || mode === 'YMD') {
       const [jYear, jMonth, jDate] = jalaliToGregorian(year, month, selectedDate.jalali.jDay)
-      currentMonth.value = new Date(jYear, jMonth, jDate)
+      currentMonth.value = new Date(jYear, jMonth -1, jDate)
     } else if (mode === 'YM') {
       const [jYear, jMonth, jDate] = jalaliToGregorian(year, month, 1)
-      currentMonth.value = new Date(jYear, jMonth, jDate)
+      currentMonth.value = new Date(jYear, jMonth -1, jDate)
     } else {
       const [jYear, jMonth, jDate] = jalaliToGregorian(year, 1, 1)
-      currentMonth.value = new Date(jYear, jMonth - 1, jDate)
+      currentMonth.value = new Date(jYear, jMonth -1, jDate)
     }
   }
   return {
